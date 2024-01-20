@@ -6,9 +6,12 @@
         <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
         <field name="arch" type="xml">
             <xpath expr="//page[@name='information']" position="after">
-                <page string="Overtime">
-
-
+                <page name="overtime" string="Overtime">
+                    <group name="top_overtime">
+                        <group col="2">
+                            <field name="absent_hours"/>
+                        </group>
+                    </group>
                     <group name="total_overtime" col="2">
                         <label for="total_overtime"/>
                         <div class="o_row" name="total_overtime">
@@ -28,8 +31,6 @@
                         <group name="overtime_factor4" string="Overtime Factor(x2.5)">
                             <field name="worked_hour4"/>
                         </group>
-
-
                     </group>
                 </page>
             </xpath>

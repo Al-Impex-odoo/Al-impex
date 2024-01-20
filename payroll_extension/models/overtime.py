@@ -1,17 +1,21 @@
 from odoo import models, fields, api
 from odoo.exceptions import UserError
 
-class HrContract(models.Model):
+
+class PayrollLoan(models.Model):
     _inherit = 'hr.contract'
+
+    absent_hours = fields.Float(string="Absent hours", currency_field='currency_id', track_visibility='always',
+                                store=True)
 
     worked_hour1 = fields.Float(string="Worked hour(1.5)", digits=(6, 2), track_visibility='always')
     worked_hour2 = fields.Float(string="Worked hour(1.75)", digits=(6, 2), track_visibility='always')
     worked_hour3 = fields.Float(string="Worked hour(2)", digits=(6, 2), track_visibility='always')
     worked_hour4 = fields.Float(string="Worked hour(2.5)", digits=(6, 2), track_visibility='always')
 
-    total_overtime = fields.Float(string='Total Overtime', compute='_compute_total_overtime')
+    total_overtime = fields.Float(string='Total Overtime', compute='_compute_total_overtime', store=True)
 
-    @api.depends('worked_hour1', 'worked_hour2', 'worked_hour3','worked_hour4', 'wage', 'hours_per_week')
+    @api.depends('worked_hour1', 'worked_hour2', 'worked_hour3', 'worked_hour4', 'wage', 'hours_per_week')
     def _compute_total_overtime(self):
         for record in self:
             try:
