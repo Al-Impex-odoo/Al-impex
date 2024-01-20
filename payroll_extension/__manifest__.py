@@ -11,9 +11,10 @@
     'data': [
         './views/payroll_extension.xml',
         './views/overtime.xml',
+        './views/payroll_loan.xml',
     ],
     'installable': True,
-    #'icon': '',
+    # 'icon': '',
     'application': False,
     'auto_install': False,
     'sequence': '-1'

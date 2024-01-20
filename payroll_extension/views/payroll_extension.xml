@@ -2,33 +2,38 @@
 
 <odoo>
     <data>
-        <record id="hr_contract_view_form" model="ir.ui.view">
+        <record id="hr_contract_view_payroll_extension_form" model="ir.ui.view">
             <field name="name">hr.contract.form</field>
             <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
             <field name="model">hr.contract</field>
             <field name="arch" type="xml">
                 <xpath expr="//page[@name='information']/group" position="after">
                     <group name="pension" string="Pension">
-                        <field name="pension"/>
-                        <field name="pension_7"/>
-                        <field name="pension_11"/>
+                        <group col="2">
+                            <field name="pension"/>
+                            <field name="pension_7"/>
+                            <field name="pension_11"/>
+                        </group>
                     </group>
                     <group>
                         <group name="allowances" string="Allowances">
                             <field name="non_tax_transport_allowance"/>
-                            <field name="taxable_transport_allowance" invisible="company_id == 1"/>
-                            <field name="transport_Per_diem" invisible="company_id == 1"/>
-                            <field name="per_diem" invisible="company_id == 1"/>
-                            <field name="commission" invisible="company_id == 1"/>
-                            <field name="hardship_allowance" invisible="company_id == 1"/>
-                            <field name="milk" invisible="company_id == 1"/>
-                            <field name="position_allowance" invisible="company_id == 2"/>
-                            <field name="house_allowance" invisible="company_id == 2"/>
+                            <field name="taxable_transport_allowance"/>
+                            <field name="hardship_allowance"/>
+                            <field name="position_allowance"/>
+                            <field name="house_allowance"/>
+                        </group>
+                        <group name="additions" string="Additions">
+                            <field name="transport_Per_diem"/>
+                            <field name="per_diem"/>
+                            <field name="commission"/>
+                            <field name="milk"/>
+                            <field name="reimbursement"/>
                         </group>
                         <group name="deductions" string="Deductions">
                             <field name="food_fee"/>
-                            <field name="loan" invisible="company_id == 2"/>
-                            <field name="reimbursement" invisible="company_id == 2"/>
+                            <field name="absent_deduction"/>
+                            <field name="loan"/>
                             <field name="other_deduction"/>
                         </group>
                     </group>
