@@ -32,7 +32,8 @@ class Payroll_Extension(models.Model):
                                       store=True)
     absent_deduction = fields.Monetary(string='Absent Deduction', currency_field='currency_id',
                                        track_visibility='always', store=True)
-    loan = fields.Monetary(string='Loan', currency_field='currency_id', track_visibility='always', store=True)
+    loan = fields.Monetary(string='Loan', currency_field='currency_id',
+                           track_visibility='always', compute="_compute_loan_amount", store=True)
 
     # pension fields
     pension = fields.Selection([
