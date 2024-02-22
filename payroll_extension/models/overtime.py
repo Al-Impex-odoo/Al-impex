@@ -27,3 +27,4 @@ class PayrollLoan(models.Model):
                 record.total_overtime = total_overtime1 + total_overtime2 + total_overtime3 + total_overtime4
             except ZeroDivisionError:
                 raise UserError("Hours per week couldn't be zero!")
+

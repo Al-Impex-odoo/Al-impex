@@ -1,5 +1,5 @@
 from odoo import fields, models, api
-
+from odoo.exceptions import UserError
 
 class Payroll_Extension(models.Model):
     _inherit = 'hr.contract'
@@ -31,9 +31,9 @@ class Payroll_Extension(models.Model):
     other_deduction = fields.Monetary(string='Other Deduction', currency_field='currency_id', track_visibility='always',
                                       store=True)
     absent_deduction = fields.Monetary(string='Absent Deduction', currency_field='currency_id',
-                                       track_visibility='always', store=True)
+                                       track_visibility='always', store=True, compute="_compute_absent_deduction", readonly=True)
     loan = fields.Monetary(string='Loan', currency_field='currency_id',
-                           track_visibility='always', compute="_compute_loan_amount", store=True)
+                           track_visibility='always', store=True, readonly=True)
 
     # pension fields
     pension = fields.Selection([
@@ -54,3 +54,11 @@ class Payroll_Extension(models.Model):
             else:
                 record.pension_11 = 0.0
                 record.pension_7 = 0.0
+
+    @api.depends('wage', 'absent_hours', 'hours_per_week')
+    def _compute_absent_deduction(self):
+        for record in self:
+            try:
+                record.absent_deduction = record.wage / (record.hours_per_week * 4) * record.absent_hours
+            except ZeroDivisionError:
+                raise UserError("Hours per week couldn't be zero!")
