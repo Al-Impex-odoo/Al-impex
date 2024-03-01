@@ -17,7 +17,7 @@
         ],
         'installable': True,
         # 'icon': '',
-        'application': False,
+        'application': True,
         'auto_install': False,
         'sequence': '-1'
     }

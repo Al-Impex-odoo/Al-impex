@@ -1,11 +1,15 @@
-p, span, h4 {
-font-size: 23px;
+p  {
+    font-size: 20px;
 }
+
+.bold-text {
+        font-weight: bold;
+        }
 
 .styled-table {
     border-collapse: collapse;
     margin: 0px 0;
-    font-size: 1.1em;
+    font-size: 0.9em;
     font-family: sans-serif;
     min-width: 400px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
@@ -17,10 +21,6 @@ font-size: 23px;
     text-align: left;
 }
 
-
-.styled-table thead tr td {
-        padding: 5px;
-    }
 
 .styled-table tbody tr {
     border-bottom: 1px solid #000;
@@ -34,10 +34,15 @@ font-size: 23px;
     border-bottom: 2px solid #4F63AB;
 }
 
+
 .approve {
-    width: 100%;
+    border-collapse: collapse;
+    margin: 0px 0;
+    font-family: sans-serif;
+    min-width: 400px;
+    boarder: none;
 }
 
-.approve th {
-    text-align: left;
+.styled-table td {
+padding: 0px 8px;
 }

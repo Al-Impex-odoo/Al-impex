@@ -16,32 +16,38 @@
             <t t-call="web.external_layout">
                 <link rel="stylesheet" href="/payroll_advice/static/src/style.css"/>
                 <div class="page">
-                    <h4 align="right">
-                        <span>Ref:________________</span>
-                    </h4>
-                    <h4 align="right">
+
+                    <h5 align="right">
+                        <span>Ref:__________________</span><br/>
+
                         Date:
                         <span t-field="first_record.formatted_date_from"/>
-                    </h4>
+                    </h5>
                     <br/>
 
-                    <h4 align="center">TO: <u>
+                    <h5 align="center">TO:
+                        <u>
 
-                        <span t-field="first_record.employee_bank"/> &#9;<span
+                            <span t-field="first_record.employee_bank"/> &#9;<span
                                 t-field="first_record.employee_bank.bank_branch"/>
-                        branch</u>
-                    </h4>
+                            branch.
+                        </u>
+                    </h5>
                     <p>
                         According to the agreement we have to dispense payroll payment to our staff, please transfer a
-                        sum of<strong>
-                        <span t-field="first_record.total_net_wage"/> &#9;<span
-                            t-field="first_record.currency_id"/></strong>
-                        in words<strong>
-                        (<span t-field="first_record.total_net_wage_in_words"/>) </strong>from our account No
-                        <span t-field="first_record.employee_bank.bank_account"/>
+                        sum of
+                        <strong><u>
+                            <span t-field="first_record.total_net_wage"/> &#9;<span
+                                t-field="first_record.currency_id"/></u>
+                        </strong>
+                        in words <strong><u>(<span t-field="first_record.total_net_wage_in_words"/>)</u>
+                        </strong>
+                        from our account No<u>
+                        <span t-field="first_record.employee_bank.bank_account"/></u>
                         to individual
                         employee according to the payroll sheet attached here for the period of
-                        <strong><span t-field="first_record.month_year"/>.</strong>
+                        <strong><u><span t-field="first_record.month_year"/>.</u>
+                        </strong>
                         <br/>
                         <br/>
                         <br/>
@@ -51,81 +57,82 @@
                     <table class="table table-bordered o_table styled-table">
                         <thead>
                             <tr style="text-align:center;">
-                                <th colspan="6" style="color:#000;background-color: #fff;">Payroll Bank Transfer For <span t-field="first_record.month_year"/></th>
+                                <th colspan="6" style="color:#000;background-color: #fff;">Payroll Bank Transfer For
+                                    <span t-field="first_record.month_year"/>
+                                </th>
                             </tr>
                             <tr>
                                 <th width="6%">
-                                    <strong>S.N</strong>
+                                    S.N
                                 </th>
                                 <th width="6%">
-                                    <strong>Ref.</strong>
+                                  Ref.
                                 </th>
                                 <th>
-                                    <strong>&#9;&#9;Name of Employee</strong>
+                                    &#9;&#9;Name of Employee
                                 </th>
                                 <th>
-                                    <strong>Account Number</strong>
+                                   Account Number
                                 </th>
                                 <th>
-                                    <strong>Branch</strong>
+                                    Branch
                                 </th>
                                 <th>
-                                    <strong>Net Wage</strong>
+                                    Net Wage
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
-                            <t t-set="count" t-value="1"/>
-                            <t t-foreach="docs" t-as="record">
-                                <tr>
-                                    <td>
+                                <t t-set="count" t-value="1"/>
+                                <t t-foreach="docs" t-as="record">
+                                    <tr>
+                                        <td>
 
                                             <span t-esc="count"/>
                                             <br/>
 
-                                    </td>
-                                    <td>
+                                        </td>
+                                        <td>
 
                                             <span t-field="record.number"/>
                                             <br/>
 
-                                    </td>
-                                    <td>
+                                        </td>
+                                        <td>
 
                                             &#9;&#9;<span t-field="record.employee_id"/>
                                             <br/>
 
-                                    </td>
-                                    <td>
+                                        </td>
+                                        <td>
 
                                             <span t-field="record.employee_bank_account"/>
                                             <br/>
 
-                                    </td>
-                                    <td>
+                                        </td>
+                                        <td>
 
                                             <span t-field="first_record.employee_bank.bank_branch"/>
                                             <br/>
 
-                                    </td>
-                                    <td>
+                                        </td>
+                                        <td>
 
                                             <span t-field="record.net_wage"/>
                                             <br/>
 
-                                    </td>
-                                </tr>
-                                <t t-set="count" t-value="count + 1"/>
-                            </t>
+                                        </td>
+                                    </tr>
+                                    <t t-set="count" t-value="count + 1"/>
+                                </t>
+
                         </tbody>
-
-
                     </table>
-                    <table class="table table-bordered o_table styled-table" align="right">
-                        <tr>
+                    <table class="table table-bordered o_table styled-table">
+                        <tr align="right">
                             <p>
                                 <td>
-                                    <strong>Total:</strong>
+                                    <b>Total:</b>
                                 </td>
                                 <td><span t-field="first_record.total_net_wage"/>&#9;<span
                                         t-field="first_record.currency_id"/>
@@ -133,21 +140,21 @@
                             </p>
                         </tr>
                     </table>
-                    <br/><br/>
-
-                    <table class="table table-bordered o_table approve">
-                        <thead>
-                            <tr>
-                                <th>Prepared By:</th>
-                                <th>Checked By:</th>
-                                <th>Approved By:</th>
+                    <br/>
+                    <table class="table o_table approve">
+                        <p>
+                            <tr align="left">
+                                <th>Prepared By:_________________</th>
+                                <th>Checked By:_________________</th>
+                                <th>Approved By:_________________</th>
                             </tr>
-                            <tr>
-                                <th>_________________</th>
-                                <th>_________________</th>
-                                <th>_________________</th>
+                            <br/>
+                            <tr align="left">
+                                <th>Signature:_________________</th>
+                                <th>Signature:_________________</th>
+                                <th>Signature:_________________</th>
                             </tr>
-                        </thead>
+                        </p>
                     </table>
                 </div>
             </t>
