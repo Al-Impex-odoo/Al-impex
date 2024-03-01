@@ -1,9 +1,11 @@
 p  {
-font-size: 20px;
+    font-size: 20px;
 }
+
 .bold-text {
         font-weight: bold;
-    }
+        }
+
 .styled-table {
     border-collapse: collapse;
     margin: 0px 0;
@@ -19,10 +21,6 @@ font-size: 20px;
     text-align: left;
 }
 
-
-.styled-table thead tr td {
-        padding: 5px;
-    }
 
 .styled-table tbody tr {
     border-bottom: 1px solid #000;
@@ -43,4 +41,8 @@ font-size: 20px;
     font-family: sans-serif;
     min-width: 400px;
     boarder: none;
+}
+
+.styled-table td {
+padding: 0px;
 }
