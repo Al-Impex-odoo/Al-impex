@@ -127,8 +127,6 @@
                                 </t>
 
                         </tbody>
-
-
                     </table>
                     <table class="table table-bordered o_table styled-table">
                         <tr align="right">
@@ -143,9 +141,8 @@
                         </tr>
                     </table>
                     <br/>
+                    <table class="table table-bordered o_table styled-table">
 
-                    <table class="table o_table approve">
-                        <p>
                             <tr align="left">
                                 <th>Prepared By:_________________</th>
                                 <th>Checked By:_________________</th>
@@ -157,7 +154,7 @@
                                 <th>Signature:_________________</th>
                                 <th>Signature:_________________</th>
                             </tr>
-                        </p>
+                      
                     </table>
                 </div>
             </t>
