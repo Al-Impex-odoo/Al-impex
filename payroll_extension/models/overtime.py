@@ -13,7 +13,7 @@ class PayrollLoan(models.Model):
     worked_hour3 = fields.Float(string="Worked hour(2)", digits=(6, 2), track_visibility='always')
     worked_hour4 = fields.Float(string="Worked hour(2.5)", digits=(6, 2), track_visibility='always')
 
-    total_overtime = fields.Float(string='Total Overtime', compute='_compute_total_overtime', store=True)
+    total_overtime = fields.Float(string='Total Overtime', compute='_compute_total_overtime', store=True, readonly=False)
 
     @api.depends('worked_hour1', 'worked_hour2', 'worked_hour3', 'worked_hour4', 'wage', 'hours_per_week')
     def _compute_total_overtime(self):
