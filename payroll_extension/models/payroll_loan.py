@@ -4,7 +4,6 @@ from dateutil.relativedelta import relativedelta
 from odoo import api, fields, models
 from odoo.exceptions import UserError
 
-
 class Payroll_Loan(models.Model):
     _inherit = 'hr.contract'
 

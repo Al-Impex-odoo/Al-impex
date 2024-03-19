@@ -1,5 +1,7 @@
 from odoo import fields, models, api
 from odoo.exceptions import UserError
+from num2words import num2words
+
 
 class Payroll_Extension(models.Model):
     _inherit = 'hr.contract'
@@ -7,6 +9,11 @@ class Payroll_Extension(models.Model):
     # Fields defined for allowance
     non_tax_transport_allowance = fields.Monetary(string='Non Taxable Transport Allowance',
                                                   currency_field='currency_id', track_visibility='always', store=True)
+    non_tax_transport_allowance_word = fields.Char(string='Non Taxable Transport Allowance In Words', store=True, )
+    wage_word = fields.Char(string='Wage In Words', store=True)
+    gross_wage = fields.Monetary(string='Gross Wage', currency_field='currency_id', track_visibility='always',
+                                 store=True)
+    gross_wage_word = fields.Char(string='Gross Wage In Words', store=True)
     taxable_transport_allowance = fields.Monetary(string='Taxable Transport Allowance', currency_field='currency_id',
                                                   track_visibility='always', store=True)
     hardship_allowance = fields.Monetary(string='Hardship Allowance', currency_field='currency_id',
@@ -31,7 +38,8 @@ class Payroll_Extension(models.Model):
     other_deduction = fields.Monetary(string='Other Deduction', currency_field='currency_id', track_visibility='always',
                                       store=True)
     absent_deduction = fields.Monetary(string='Absent Deduction', currency_field='currency_id',
-                                       track_visibility='always', store=True, compute="_compute_absent_deduction", readonly=False)
+                                       track_visibility='always', store=True, compute="_compute_absent_deduction",
+                                       readonly=False)
     loan = fields.Monetary(string='Loan', currency_field='currency_id',
                            track_visibility='always', store=True, readonly=True)
 
@@ -62,3 +70,10 @@ class Payroll_Extension(models.Model):
                 record.absent_deduction = record.wage / (record.hours_per_week * 4) * record.absent_hours
             except ZeroDivisionError:
                 raise UserError("Hours per week couldn't be zero!")
+
+    @api.onchange('wage', 'non_tax_transport_allowance', 'gross_wage')
+    def _onchange_number_to_words(self):
+        for rec in self:
+            rec.wage_word = num2words(rec.wage)
+            rec.gross_wage_word = num2words(rec.gross_wage)
+            rec.non_tax_transport_allowance_word = num2words(rec.non_tax_transport_allowance)
