@@ -8,7 +8,7 @@ class Payroll_Extension(models.Model):
 
     # Fields defined for allowance
     non_tax_transport_allowance = fields.Monetary(string='Non Taxable Transport Allowance',
-                                                  currency_field='currency_id', track_visibility='always', store=True)
+                                                  currency_field='currency_id', store=True)
     non_tax_transport_allowance_word = fields.Char(string='Non Taxable Transport Allowance In Words', store=True, )
     wage_word = fields.Char(string='Wage In Words', store=True)
     gross_wage = fields.Monetary(string='Gross Wage', currency_field='currency_id', track_visibility='always',
