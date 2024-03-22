@@ -13,9 +13,9 @@
                 <xpath expr="//page[@name='information']/group" position="after">
                     <group name="pension" string="Pension">
                         <group col="2">
-<!--                             <field name="wage_word"/> -->
-<!--                             <field name="gross_wage_word"/> -->
-<!--                             <field name="non_tax_transport_allowance_word"/> -->
+                            <field name="wage_word" readonly="1"/> 
+                            <field name="gross_wage_word" readonly="1"/> 
+                            <field name="non_tax_transport_allowance_word" readonly="1"/> 
                             <field name="pension"/>
                             <field name="pension_7"/>
                             <field name="pension_11"/>
