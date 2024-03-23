@@ -8,12 +8,13 @@ class Payroll_Extension(models.Model):
 
     # Fields defined for allowance
     non_tax_transport_allowance = fields.Monetary(string='Non Taxable Transport Allowance',
-                                                  currency_field='currency_id', store=True)
-    non_tax_transport_allowance_word = fields.Char(string='Non Taxable Transport Allowance In Words', store=True, )
-    wage_word = fields.Char(string='Wage In Words', store=True)
+                                                  currency_field='currency_id', store=True, track_visibility='always')
+    non_tax_transport_allowance_word = fields.Char(string='Non Taxable Transport Allowance In Words', store=True,
+                                                   compute="_compute_non_tax_transport_allowance_word")
+    wage_word = fields.Char(string='Wage In Words', store=True, compute="_compute_wage_word")
     gross_wage = fields.Monetary(string='Gross Wage', currency_field='currency_id', track_visibility='always',
-                                 store=True)
-    gross_wage_word = fields.Char(string='Gross Wage In Words', store=True)
+                                 store=True, compute="_compute_gross_wage")
+    gross_wage_word = fields.Char(string='Gross Wage In Words', store=True, compute="_compute_gross_wage_word")
     taxable_transport_allowance = fields.Monetary(string='Taxable Transport Allowance', currency_field='currency_id',
                                                   track_visibility='always', store=True)
     hardship_allowance = fields.Monetary(string='Hardship Allowance', currency_field='currency_id',
@@ -71,9 +72,26 @@ class Payroll_Extension(models.Model):
             except ZeroDivisionError:
                 raise UserError("Hours per week couldn't be zero!")
 
-    @api.onchange('wage', 'non_tax_transport_allowance', 'gross_wage')
-    def _onchange_number_to_words(self):
+    # convert figure to words for
+    @api.depends('wage')
+    def _compute_wage_word(self):
         for rec in self:
             rec.wage_word = num2words(rec.wage)
-            rec.gross_wage_word = num2words(rec.gross_wage)
+
+    # convert figure to words for non_tax_transport_allowance
+    @api.depends('non_tax_transport_allowance')
+    def _compute_non_tax_transport_allowance_word(self):
+        for rec in self:
             rec.non_tax_transport_allowance_word = num2words(rec.non_tax_transport_allowance)
+
+    # addition of transport allowance and wage
+    @api.depends('wage', 'non_tax_transport_allowance')
+    def _compute_gross_wage(self):
+        for rec in self:
+            rec.gross_wage = rec.wage + rec.non_tax_transport_allowance
+
+    # convert figure to words for gross wage
+    @api.depends('gross_wage')
+    def _compute_gross_wage_word(self):
+        for rec in self:
+            rec.gross_wage_word = num2words(rec.gross_wage)
