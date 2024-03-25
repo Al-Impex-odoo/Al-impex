@@ -9,9 +9,13 @@
                 <page name="overtime" string="Overtime">
                     <group name="top_overtime">
                         <group col="2">
+                            <field name="number_of_days"/>
+                            <field name="off_days"/>
+                            <separator/>
                             <field name="absent_hours"/>
                         </group>
                     </group>
+                    <separator/>
                     <group name="total_overtime" col="2">
                         <label for="total_overtime"/>
                         <div class="o_row" name="total_overtime">

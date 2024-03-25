@@ -7,9 +7,9 @@
             <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
             <field name="model">hr.contract</field>
             <field name="arch" type="xml">
-                <xpath expr="//group[@name='yearly_benefits']" position="inside">
-                    <field name="gross_wage"/>
-                </xpath>
+<!--                <xpath expr="//group[@name='yearly_benefits']" position="inside">-->
+<!--                    <field name="gross_wage"/>-->
+<!--                </xpath>-->
                 <xpath expr="//page[@name='information']/group" position="after">
                     <group name="pension" string="Pension">
                         <group col="2">
