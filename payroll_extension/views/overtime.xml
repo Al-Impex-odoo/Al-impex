@@ -9,8 +9,8 @@
                 <page name="overtime" string="Overtime">
                     <group name="top_overtime">
                         <group col="2">
-                            <field name="number_of_days"/>
                             <field name="off_days"/>
+                            <field name="off_days_deduction"/>
                             <separator/>
                             <field name="absent_hours"/>
                         </group>

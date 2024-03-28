@@ -7,8 +7,8 @@ class PayrollLoan(models.Model):
 
     absent_hours = fields.Float(string="Absent hours", currency_field='currency_id', track_visibility='always',
                                 store=True)
-    off_days = fields.Float(string="Off days", track_visibility='always', store=True, compute='_compute_off_days')
-    number_of_days = fields.Integer(string="Number of days", track_visibility='always', store=True)
+    off_days_deduction = fields.Float(string="Off Days Deduction", track_visibility='always', store=True, compute='_compute_off_days')
+    off_days = fields.Integer(string="Off Days", track_visibility='always', store=True)
 
     worked_hour1 = fields.Float(string="Worked hour(1.5)", digits=(6, 2), track_visibility='always')
     worked_hour2 = fields.Float(string="Worked hour(1.75)", digits=(6, 2), track_visibility='always')
@@ -31,7 +31,7 @@ class PayrollLoan(models.Model):
                 raise UserError("Hours per week couldn't be zero!")
 
     # off days calulation
-    @api.depends('number_of_days', 'wage', 'hours_per_week')
+    @api.depends('off_days', 'wage', 'hours_per_week')
     def _compute_off_days(self):
         for record in self:
-            record.off_days = record.wage / (record.hours_per_week * 4) * record.number_of_days
+            record.off_days_deduction = record.wage / (record.hours_per_week * 4) * record.off_days
